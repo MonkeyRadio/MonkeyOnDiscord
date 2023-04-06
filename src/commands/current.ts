@@ -1,19 +1,21 @@
-import { CommandInteraction, Client } from "discord.js";
+import { CommandInteraction, SlashCommandBuilder, Embed, EmbedBuilder } from "discord.js";
 import { Command } from "../types/Command.js";
-import { getCurrent } from "../controllers/MonkeyAPI.js";
+import { getCurrent, Track } from "../controllers/MonkeyAPI.js";
 
-export const current: Command = {
-    name: "monkey",
-    description: "Monkey Radio !",
-    run: async (client: Client, interaction: CommandInteraction) => {
-
-        const current = await getCurrent();
-
-        console.log(current)
-
-        await interaction.followUp({
-            ephemeral: true,
-            content: current.current.trackTitle
-        });
+export default {
+    data: new SlashCommandBuilder()
+        .setName("monkey")
+        .setDescription("Get the current monkey"),
+    execute: async (interaction: CommandInteraction): Promise<void> => {
+        const current:Track = await getCurrent();
+        const embed: EmbedBuilder = new EmbedBuilder()
+            .setTitle("Currently on the monkey")
+            .setColor(0x00AE86)
+            .setThumbnail(current.trackCover)
+            .addFields([
+                { name: "Title", value: current.trackTitle, inline: true },
+                { name: "Artist", value: current.trackArtist, inline: true },
+            ]);
+        await interaction.reply({ embeds: [embed] });
     }
-};
+} as Command;

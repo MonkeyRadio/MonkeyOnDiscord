@@ -1,15 +1,11 @@
-import { CommandInteraction, Client } from "discord.js";
+import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 import { Command } from "../types/Command.js";
 
-export const pingMonkey: Command = {
-    name: "pingmonkey",
-    description: "Ping the MonkeyRadio Bot !",
-    run: async (client: Client, interaction: CommandInteraction) => {
-        const content = "Monkey Pong";
-
-        await interaction.followUp({
-            ephemeral: true,
-            content
-        });
+export default {
+    data: new SlashCommandBuilder()
+        .setName("ping_the_monkey")
+        .setDescription("Ping the monkey"),
+    execute: async (interaction: CommandInteraction): Promise<void> => {
+        await interaction.reply("Pong!");
     }
-};
+} as Command;
