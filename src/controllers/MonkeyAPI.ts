@@ -26,6 +26,22 @@ export type Current = {
     epg: Epg;
 }
 
+export type Listeners = {
+    icecast: number;
+    CDN: number;
+    total: number;
+}
+
+export type Onair = {
+    tit: string;
+    smallTit: string;
+    cover: string;
+    radioURL: string;
+    DiffLinkPath: string;
+    IceDiffLinkPath: string;
+    listeners: Listeners;
+}
+
 export async function getCurrent(): Promise<Current> {
     const trackR = await fetch(config.monkeyAPI.url + config.monkeyAPI.endpoints.current);
     const track:any = await trackR.json();
@@ -35,4 +51,10 @@ export async function getCurrent(): Promise<Current> {
         track: track.current,
         epg: epg.epgNow
     } as Current;
+}
+
+export async function getOnair(): Promise<Onair> {
+    const onairR = await fetch(config.monkeyAPI.url + config.monkeyAPI.endpoints.onair);
+    const onair:any = await onairR.json();
+    return onair.onair;
 }

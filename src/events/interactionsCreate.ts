@@ -8,7 +8,7 @@ export default (client: Client): void => {
             let command:Command = commands[interaction.commandName];
             if (!command) return;
             try {
-                await command.execute(interaction as CommandInteraction);
+                await command.execute(interaction as CommandInteraction, client);
             } catch (error) {
                 console.error(error);
                 await interaction.reply({ content: "There was an error while executing this command!", ephemeral: true });

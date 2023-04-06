@@ -3,5 +3,5 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 
 export type Command = {
     data: SlashCommandBuilder;
-    execute: (interaction: CommandInteraction) => Promise<void>;
+    execute: (interaction: CommandInteraction, client: Client) => Promise<void>;
 };

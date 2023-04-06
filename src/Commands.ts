@@ -44,6 +44,7 @@ export async function register_commands() {
 	} catch (error) {
     console.error(`Failed to reload application (/) commands.`);
 		console.error(error);
+    process.exit(1);
 	}
 }
 
