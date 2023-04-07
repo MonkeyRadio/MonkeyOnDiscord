@@ -22,6 +22,7 @@ async function play(channel: VoiceBasedChannel, guild: Guild, onair: Onair): Pro
     connection.on(VoiceConnectionStatus.Disconnected, () => {
         player.stop(true);
         subscription!.unsubscribe();
+        connection.destroy();
     });
     connection.on(VoiceConnectionStatus.Destroyed, () => {
         player.stop(true);

@@ -12,7 +12,8 @@ export async function stopTheMonkey(interaction: CommandInteraction) {
     if (!interaction.guild) return;
     const connection = getVoiceConnection(interaction.guild.id);
     if (connection) {
+        await interaction.reply({ content: "Stopped the monkey", ephemeral: true });
         connection.destroy();
-    }
-    await interaction.reply({ content: "Stopped the monkey", ephemeral: true });
+    } else
+        await interaction.reply({ content: "The monkey is not playing, it's sad :(", ephemeral: true });
 }
