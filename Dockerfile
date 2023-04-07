@@ -11,5 +11,6 @@ FROM node:latest
 WORKDIR /app
 COPY --from=ts-compiler /app/ ./
 ENV NODE_ENV=production
+ENV TZ=Europe/Paris
 RUN npm install
 ENTRYPOINT [ "npm", "start" ]
