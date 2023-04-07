@@ -4,6 +4,7 @@ COPY package*.json ./
 COPY tsconfig*.json ./
 RUN npm install
 COPY ./src ./src
+RUN rm -rf ./dist
 RUN npm run build
 
 FROM node:latest
