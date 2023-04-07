@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node dist/Bot.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/Bot.js",
+    "dev": "tsc && node dist/Bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
