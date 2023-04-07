@@ -4,10 +4,10 @@ import { getCurrent, Current } from "../../controllers/MonkeyAPI.js";
 export async function getShow(interaction: CommandInteraction) {
     const currentEpg:Current = await getCurrent();
     let epgdateLabel: string = "";
-    epgdateLabel += ("0" + new Date(currentEpg.epg.epgStart * 1000).getHours()).slice(0, 2) + ":";
-    epgdateLabel += ("0" + new Date(currentEpg.epg.epgStart * 1000).getMinutes()).slice(0, 2) + " - ";
-    epgdateLabel += ("0" + new Date(currentEpg.epg.epgStop * 1000).getHours()).slice(0, 2) + ":";
-    epgdateLabel += ("0" + new Date(currentEpg.epg.epgStop * 1000).getMinutes()).slice(0, 2);
+    epgdateLabel += ("0" + new Date(currentEpg.epg.epgStart * 1000).getHours()).slice(-2) + ":";
+    epgdateLabel += ("0" + new Date(currentEpg.epg.epgStart * 1000).getMinutes()).slice(-2) + " - ";
+    epgdateLabel += ("0" + new Date(currentEpg.epg.epgStop * 1000).getHours()).slice(-2) + ":";
+    epgdateLabel += ("0" + new Date(currentEpg.epg.epgStop * 1000).getMinutes()).slice(-2);
     const embedShow: EmbedBuilder = new EmbedBuilder()
         .setTitle("Current Show")
         .setColor(0x00AE86)

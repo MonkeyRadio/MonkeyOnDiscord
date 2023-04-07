@@ -1,21 +1,18 @@
 import { CommandInteraction, GuildMember, VoiceBasedChannel } from 'discord.js';
 import { getVoiceConnection } from '@discordjs/voice';
+import { requireMonkeyMaster } from '../../middlewares/monkeyMaster.js';
 
-async function stop(channel: VoiceBasedChannel): Promise<void> {
-    const connection = getVoiceConnection(channel.guild.id);
+export async function stopTheMonkey(interaction: CommandInteraction) {
+    const member = interaction.member as GuildMember;
+    if (!member) return;
+    if (!requireMonkeyMaster(member)) {
+        await interaction.reply({ content: "You need to be a Monkey Master to use this command", ephemeral: true });
+        return;
+    }
+    if (!interaction.guild) return;
+    const connection = getVoiceConnection(interaction.guild.id);
     if (connection) {
         connection.destroy();
     }
-}
-
-export async function stopTheMonkey(interaction: CommandInteraction) {
-    const member = interaction.member;
-    if (!member) return;
-    const voiceChannel = member as GuildMember;
-    if (!voiceChannel.voice.channel) {
-        await interaction.reply({ content: "You need to be in a voice channel to use this command", ephemeral: true });
-        return;
-    }
-    await stop(voiceChannel.voice.channel);
     await interaction.reply({ content: "Stopped the monkey", ephemeral: true });
 }

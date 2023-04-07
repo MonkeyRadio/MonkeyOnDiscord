@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, SlashCommandBuilder, CommandInteractionOptionResolver } from "discord.js";
+import { Client, CommandInteraction, SlashCommandBuilder, CommandInteractionOptionResolver, ChannelType } from "discord.js";
 import { Command } from "../types/Command.js";
 import { playTheMonkey } from "./MonkeyVoice/voiceConnect.js";
 import { stopTheMonkey } from "./MonkeyVoice/voiceDisconnect.js";
@@ -12,7 +12,11 @@ export default {
         .setDescription("Get the current monkey")
         .addSubcommand(option =>
             option.setName("play")
-                .setDescription("Play the monkey"))
+                .setDescription("Play the monkey")
+                .addChannelOption(option =>
+                    option.setName("voicechannel")
+                        .setDescription("The voice channel to join or empty to join the current channel")
+                        .addChannelTypes(ChannelType.GuildVoice)))
         .addSubcommand(option =>
             option.setName("stop")
                 .setDescription("Stop the monkey"))
