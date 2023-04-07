@@ -11,4 +11,4 @@ WORKDIR /app
 COPY --from=ts-compiler /app/ ./
 ENV NODE_ENV=production
 RUN npm install
-CMD [ "npm", "start" ]
+ENTRYPOINT [ "npm", "start" ]
