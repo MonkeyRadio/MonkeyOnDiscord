@@ -11,6 +11,7 @@ Monkey Radio Bot Module for Discord with basic API integration
 * Voice State support (Listen MonkeyRadio in your server)
 * Get the currently playing metadata (track and show)
 * Get the current listeners amount
+* Enable restriction (on the play and stop command) -> Create "MonkeyMaster" role
 
 ## Testing
 
