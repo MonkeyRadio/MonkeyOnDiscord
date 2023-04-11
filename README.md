@@ -1,6 +1,6 @@
 # MonkeyOnDiscord
 
-[Get MonkeyRadio](https://discord.com/oauth2/authorize?client_id=896742657047547925&permissions=1133584&scope=bot) in your discord server
+[Get MonkeyRadio](https://discord.com/oauth2/authorize?client_id=896742657047547925&permissions=35461400627264&scope=bot) in your discord server
 
 ---
 
