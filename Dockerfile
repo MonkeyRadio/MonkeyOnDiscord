@@ -8,6 +8,7 @@ RUN rm -rf ./dist
 RUN npm run build
 
 FROM node:latest
+LABEL maintainer nicojqn
 WORKDIR /app
 COPY --from=ts-compiler /app/ ./
 ENV NODE_ENV=production
