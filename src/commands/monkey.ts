@@ -18,6 +18,13 @@ export default {
                         .setDescription("The voice channel to join or empty to join the current channel")
                         .addChannelTypes(ChannelType.GuildVoice)))
         .addSubcommand(option =>
+            option.setName("join")
+                .setDescription("Play the monkey")
+                .addChannelOption(option =>
+                    option.setName("voicechannel")
+                        .setDescription("The voice channel to join or empty to join the current channel")
+                        .addChannelTypes(ChannelType.GuildVoice)))
+        .addSubcommand(option =>
             option.setName("stop")
                 .setDescription("Stop the monkey"))
         .addSubcommand(option =>
@@ -33,7 +40,12 @@ export default {
 
     execute: async (interaction: CommandInteraction, client: Client): Promise<void> => {
         let subCommand: string | null = (interaction.options as CommandInteractionOptionResolver).getSubcommand();
+        
         switch (subCommand) {
+
+            case "join":
+                await playTheMonkey(interaction, client);
+                break;
 
             case "play":
                 await playTheMonkey(interaction, client);

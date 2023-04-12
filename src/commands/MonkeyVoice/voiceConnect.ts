@@ -1,4 +1,4 @@
-import { ApplicationCommandOption, Client, CommandInteraction, Guild, GuildMember, VoiceBasedChannel } from 'discord.js';
+import { ApplicationCommandOption, Client, CommandInteraction, EmbedBuilder, Guild, GuildMember, VoiceBasedChannel } from 'discord.js';
 import { joinVoiceChannel, createAudioPlayer, createAudioResource, VoiceConnectionStatus, getVoiceConnection } from '@discordjs/voice';
 import { getOnair, Onair } from '../../controllers/MonkeyAPI.js'
 import { getCurrent } from '../MonkeyUtils/Current.js';
@@ -55,6 +55,7 @@ export async function playTheMonkey(interaction: CommandInteraction, client: Cli
         await interaction.reply({ content: "Sorry, I can't join this channel (Give the rights to the monkey)", ephemeral: true });
         return;
     }
+    await interaction.deferReply();
     await play(channel, interaction.guild!, await getOnair());
-    await getCurrent(interaction, false);
+    await getCurrent(interaction, false, true);
 }
