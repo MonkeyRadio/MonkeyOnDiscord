@@ -1,4 +1,4 @@
-name: ci
+name: "[Staging]BuildDockerImage"
 
 on:
   push:
