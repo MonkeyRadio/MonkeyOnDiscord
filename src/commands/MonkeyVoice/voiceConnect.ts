@@ -17,7 +17,7 @@ async function play(channel: VoiceBasedChannel, guild: Guild, onair: Onair): Pro
     const resource = createAudioResource(onair.IceDiffLinkPath, {
         inlineVolume: true,
     });
-    resource.volume?.setVolume(0.07);
+    resource.volume?.setVolume(0.5);
     player.play(resource);
     const subscription = connection.subscribe(player);
     connection.on(VoiceConnectionStatus.Disconnected, () => {
