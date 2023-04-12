@@ -1,7 +1,7 @@
 import { CommandInteraction, EmbedBuilder } from "discord.js";
 import { getCurrent as getCur, Current } from "../../controllers/MonkeyAPI.js";
 
-export async function getCurrent(interaction: CommandInteraction, ephemeral: boolean = true) {
+export async function getCurrent(interaction: CommandInteraction, ephemeral: boolean = true, editReply: boolean = false) {
     const current:Current = await getCur();
     let dateLabel: string = "";
     dateLabel += ("0" + new Date(current.epg.epgStart * 1000).getHours()).slice(-2) + ":";
@@ -19,5 +19,8 @@ export async function getCurrent(interaction: CommandInteraction, ephemeral: boo
             { name: "Hosts", value: current.epg.epgHosts, inline: true },
             { name: "Hours", value: dateLabel, inline: true }
         ]);
-    await interaction.reply({ embeds: [embedCur], ephemeral: ephemeral } );
+    if (editReply)
+        await interaction.editReply({ embeds: [embedCur] });
+    else
+        await interaction.reply({ embeds: [embedCur], ephemeral: ephemeral });
 }

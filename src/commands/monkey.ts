@@ -40,7 +40,12 @@ export default {
 
     execute: async (interaction: CommandInteraction, client: Client): Promise<void> => {
         let subCommand: string | null = (interaction.options as CommandInteractionOptionResolver).getSubcommand();
+        
         switch (subCommand) {
+
+            case "join":
+                await playTheMonkey(interaction, client);
+                break;
 
             case "play":
                 await playTheMonkey(interaction, client);
